@@ -16,7 +16,7 @@ module.exports = (count, iteratorFn, limit = 10) => {
       .then(() => iteratorFn(i))
       .catch((err) => {
         console.log('Error executing parallel promise', err)
-        return
+        return null
       })
       .then((r) => (results[i] = r))
   }
