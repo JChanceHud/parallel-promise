@@ -13,7 +13,11 @@ module.exports = (count, iteratorFn, limit = 10) => {
   for (let i = 0; i < count; i += 1) {
     const index = i % targetPromises.length
     targetPromises[index] = targetPromises[index]
-      .then(() => (() => iteratorFn(i))())
+      .then(() => iteratorFn(i))
+      .catch((err) => {
+        console.log('Error executing parallel promise', err)
+        return
+      })
       .then((r) => (results[i] = r))
   }
   return Promise.all(targetPromises).then(() => results)

@@ -1,7 +1,7 @@
 declare module '@jchancehud/parallel-promise' {
-  export default function(
+  export default function<T>(
     count: number,
-    iteratorFn: (i: number) => boolean | Promise<any>,
-    limit: number
-  ): Promise<any[]>
+    iteratorFn: (i: number) => Promise<T>,
+    limit?: number
+  ): Promise<T[]>
 }
